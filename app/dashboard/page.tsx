@@ -1,8 +1,14 @@
+'use client'
+
 import { Card, Chart, Rightbar, Transactions, styles } from "@/app/ui/dashboard";
 import { cards } from "@/lib/data";
-import { useParams } from "next/navigation";
+import { pb } from "@/lib/db";
+import { redirect, useParams } from "next/navigation";
 
 const Dashboard = () => {
+  if (!pb.authStore) {
+    redirect('/login')
+  }
   return (
     <div className={styles.wrapper}>
       <div className={styles.main}>
